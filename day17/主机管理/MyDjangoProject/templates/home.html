@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" >
+    <script src="/static/jquery-1.12.4.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<<h1 style="text-align:center">欢迎登陆主机管理系统</h1>
+<table border="1"  class="table shadow" style="z-index: 10 " id="info"   >
+    <tr>
+        <th>主机名</th>
+        <th>端口</th>
+        <th>部门</th>
+        <th colspan="2">操作</th>
+    </tr>
+    {% for line in user_list %}
+        <tr>
+            <td target="ip" id="ip">{{ line.hostname }}</td>
+            <td target="port" id="port">{{ line.port }}</td>
+            <td target="depart" id="depart">{{ line.dp.title }}</td>
+            <td>
+                <button type="button" class="chuxian btn btn-primary btn-lg edut" data-toggle="modal" data-target="#myModal">
+                   编辑
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">编辑信息</h4>
+                            </div>
+                            <div class="modal-body">
+                                主机：<input type="text" value="" name="ip" id="ip"/><p>
+                                端口：<input type="text" value="" name="port" id="port"/><p>
+                                部门：<input type="text" value="" name="depart" id="depart"/><p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" name="sc" id="sc">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td><a href="/del_host/?id={{ line.id }}" class="btn btn-primary">删除</a></td>
+        </tr>
+    {% endfor %}
+</table>
+<div>
+    <a href="/add_host/" class="btn btn-primary">新增主机</a>
+</div>
+{#<script src="/static/jquery-1.12.4.js"></script>#}
+<script>
+  $(function(){
+      tijiao();
+  });
+    function tijiao(){
+        $('#sc').click(function(){
+            var p = $("#ip").val();
+            var t = $("#port").val();
+            $.ajax({
+                url:'/aj/',
+                type:'POST',
+                data:{ppp:p,ttt:t},
+                success:function(data){
+                    var data_dict = JSON.parse(data);
+                    if(data_dict.status){
+                        location.href= "/home/"
+                    }else {
+                        alert(data_dict.error)
+                    }
+            }
+            })
+        })
+    }
+</script>
+{#<div>#}
+{#    <form action="/add/" method="post">#}
+{#        新增主机名:<input type="text" name="a_user">#}
+{#        新增端口:  <input type="text" name="a_port">#}
+{#        新增部门:  <input type="text" name="a_bm">#}
+{#        <input type="submit" value="增加">#}
+{#    </form>#}
+{#</div>#}
+</body>
+</html>

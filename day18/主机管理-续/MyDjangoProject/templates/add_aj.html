@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+</head>
+<body>
+<div style="width: 800px;margin: 0 auto;">
+    <form id="myForm" novalidate>
+        <div class="form-group">
+            <label>主机名</label>
+            <div id="hn" name="hu">{{ obj.hostname }}</div>
+            <span>{{ obj.errors.hostname.0 }}</span>
+        </div>
+        <div class="form-group">
+            <label>系统版本</label>
+            <div id="sv" name="sv">{{ obj.system_version }}</div>
+            <span>{{ obj.errors.system_version.0 }}</span>
+        </div>
+        <div class="form-group">
+                <label>部门</label>
+                <div id="dp" name="dp">{{ obj.dp_id }}</div>
+                <span>{{ obj.errors.dp_id.0 }}</span>
+            </div>
+        <div class="form-group">
+                <label>所属用户</label>
+                <div id="us" name="us">{{ obj.UI_id }}</div>
+                <span>{{ obj.errors.UI_id.0 }}</span>
+            </div>
+        <button type="button" class="btn btn-default" id="tijiao">提交</button>
+        </form>
+</div>
+<script src="/static/jquery-1.12.4.js"></script>
+
+<script>
+    $(function(){
+        aj_submit();
+    });
+    function aj_submit(){
+        $("#tijiao").click(function(){
+            $.ajax({
+                url:"/add_aj/",
+                type:"POST",
+                data:$('#myForm').serialize(),
+                success:function(data){
+                    var data_dict = JSON.parse(data);
+                    if(data_dict.status){
+                        location.href="/users/"
+                    }else {
+                        alert(data_dict.error);
+{#                        data_dict.error#}
+                    }
+{#                    console.log(data)#}
+                }
+            })
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+    <h1>42区</h1>
+    <script src="/static/jquery.js"></script>
+    <link rel="stylesheet" href="/static/css/commons.css">
+    <link rel="stylesheet" href="/static/plugins/tab-menu-box/tab.css">
+    <script>
+        $(function(){
+            $("#menu_user").addClass("active").sibling().removeClass("active");
+        })
+    </script>
+{% endblock %}

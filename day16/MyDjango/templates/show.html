@@ -1,0 +1,30 @@
+{% extends "modules.html" %}
+
+{% block body_body %}
+    <div xmlns="http://www.w3.org/1999/html">
+        <table class="table"  border="1 solid">
+            <tr>
+                <th>学员姓名</th>
+                <th>密码</th>
+                <th>操作</th>
+            </tr>
+            {% for obj in user_list %}
+                <tr>
+                    <td>{{ obj.user }}</td>
+                    <td>{{ obj.pwd }}</td>
+                    <td><a href="/show_del/?id={{ obj.id }}">删除</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <form action="/show/" method="post">
+        新增用户名:<input type="text" name="a_user">
+        新增密码:  <input type="password" name="a_pwd">
+        <input type="submit" value="增加">
+    </form>
+    <form action="/show_edit/" method="post">
+        更改用户名:<input type="text" name="a_user">
+        更改密码:  <input type="password" name="a_pwd">
+        <input type="submit" value="提交">
+    </form>
+{% endblock %}

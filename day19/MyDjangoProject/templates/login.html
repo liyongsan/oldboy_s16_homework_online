@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <script src="/static/jquery-1.12.4.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <title> </title>
+    <style>
+        .row [class*="col-"]{
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background-color: rebeccapurple;
+            border: 2px solid yellowgreen;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+{#{% csrf_token %}#}
+<span class="input-group input-group-addon" id="basic-addon1">欢迎登陆抽屉页面管理系统</span><br/>
+<div class="container">
+    <div class="input-group" style="width: 300px">
+        <span class="input-group-addon"  id="basic-addon1">账号</span>
+        <input type="text"  name="user" id="user" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group" style="width: 300px">
+        <span class="input-group-addon" id="basic-addon1">密码</span>
+        <input type="password" name="pwd" id="pwd" class="form-control" placeholder="password" aria-describedby="basic-addon1">
+    </div>
+    <span class="input-group-addon" style="width: 50px" id="basic-addon1"><input type="button" onclick="Do();"  value="提交" id="btn"/></span>
+</div>
+</body>
+<script>
+    function Do(){
+        var u = $("#user").val();
+        var p = $("#pwd").val();
+        $.ajax({
+            url:"/login/",
+            data:{uuu:u,ppp:p},
+            type:'POST',
+            success:function(data){
+                var data_dict = JSON.parse(data);
+                if (data_dict.status){
+                    location.href = "/chouti/"
+                }else {
+                    alert(data_dict.error)
+                }
+            }
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - day17_hostmanage@localhost" uuid="ffe70321-b4bd-43b9-a0fa-dfd3bbddaf49">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>day17_hostmanage.*</schema-pattern>
+      <default-schemas>day17_hostmanage.*</default-schemas>
+    </data-source>
+  </component>
+</project>

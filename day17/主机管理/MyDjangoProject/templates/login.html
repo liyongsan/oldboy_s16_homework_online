@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="/static/jquery-1.12.4.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <title> </title>
+    <style>
+        .row [class*="col-"]{
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background-color: rebeccapurple;
+            border: 2px solid yellowgreen;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<span class="input-group input-group-addon" id="basic-addon1">欢迎登陆Ajax主机管理</span><br/>
+<div class="container">
+    <div class="input-group" style="width: 300px">
+        <span class="input-group-addon"  id="basic-addon1">账号</span>
+        <input type="text"  name="user" id="user" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group" style="width: 300px">
+        <span class="input-group-addon" id="basic-addon1">密码</span>
+        <input type="password" name="pwd" id="pwd" class="form-control" placeholder="password" aria-describedby="basic-addon1">
+    </div>
+    <span class="input-group-addon" style="width: 50px" id="basic-addon1"><input type="button" onclick="Do();"  value="提交" id="btn"/></span>
+</div>
+    <script type="text/javascript">
+        function Do(){
+            var u = $("#user").val();
+            var p = $("#pwd").val();
+            $.ajax({
+                url:"/login/",
+                data:{uuu:u,ppp:p},
+                type:'POST',
+                success:function(data){
+                    {# console.log(data);#}
+                    var data_dict = JSON.parse(data);
+                    if(data_dict.status){
+                        location.href = '/home/'
+                    }else {
+                        alert(data_dict.error)
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css'  %}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap-theme.min.css'  %}" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script type="application/javascript" src="{% static 'bootstrap-3.3.7-dist/jquery-3.1.1.js'  %}"></script>
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js'  %}" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>myDjango</title>
+     <style>
+        .row [class*="col-"]{
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background-color: rebeccapurple;
+            border: 2px solid yellowgreen;
+            color:#fff;
+        }
+        body{
+            margin: 0;
+        }
+         .pg_header{
+             background-color: #4cae4c;
+             height: 48px;
+             color: white;
+             top: 0px;
+             float: inherit;
+             font-size: 20px;
+            line-height: 48px;
+         }
+         .pg_body_left{
+             background-color: #CDCDB4;
+             float: left;
+             width: 20%;
+             height: 800px;
+         }
+         .pg_body_right{
+             background-color: white;
+             float: right;
+             width: 80%;
+             height: 800px;
+         }
+    </style>
+</head>
+<body>
+<div class="pg_header">
+    <span style="padding: 20px">学员管理系统</span>
+    <span style="color: #8a6d3b;right: 30px;position: absolute">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                alex
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">注销</a></li>
+                <li><a href="#">个人信息</a></li>
+                <li><a href="#">Somethinge else</a></li>
+            </ul>
+            <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span>
+            </button>
+        </div>
+    </span>
+</div>
+<div class="pg_body_left">
+    <ul class="nav nav-pills nav-stacked">
+{#        <li role="presentation" class="active"><a href="#">Home</a></li>#}
+        <li role="presentation"><a href="/home/">Home</a></li>
+        <li role="presentation"><a href="/profile/">Profile</a></li>
+        <li role="presentation"><a href="/message/">Messages</a></li>
+        <li role="presentation"><a href="/show/">show</a></li>
+    </ul>
+</div>
+<div class="pg_body_right">
+    {% block body_body %}
+
+    {% endblock %}
+</div>
+</body>
+</html>

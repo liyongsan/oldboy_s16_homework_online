@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.css"/>
+    <title>JQuery2</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .left{
+            float: left;
+        }
+        .right{
+            float: right;
+        }
+        .pg_header{
+            height: 48px;
+            line-height: 48px;
+            background-color: #7CFC00;
+        }
+        .pg_header .item{
+            height: 100%;
+            width: 200px;
+            background-color: #CD8500;
+            font-size: 26px;
+            text-align: center;
+            font-family: 微软雅黑,华文细黑,黑体,Arial;
+        }
+        .pg_header  .content1{
+            color: #fff;
+            padding: 0 15px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .pg_body{
+            height: 1000px;
+            background-color:#C4C4C4;
+        }
+        .pg_body .item2{
+            width: 200px;
+            height: 100%;
+            background-color: #1C86EE;
+            float: left;
+            line-height: 50px;
+            font-size: 20px;
+            /*padding: 9px*/
+        }
+        .pg_body .content2{
+            width: 300px;
+            height: 1000px;
+            background-color: #EDEDED;
+            float: right;
+            text-align: center
+        }
+         .content3 {
+         display: none;
+             background-color: white;
+         }
+         .hide{
+            display: none;
+        }
+
+        .active{
+            background-color: #2459a2;
+        }
+         .item5{
+            height:38px;
+            line-height: 38px;
+            background-color: #204982;
+            width:300px
+        }
+        .menu5{
+            float: left;
+            border-right: 1px solid green;
+            padding:0 10px;
+            color:white;
+            cursor: pointer
+        }
+        .info5{
+            width: 300px;
+            height: 118px;
+            background-color: deeppink;
+            text-align: left;
+        }
+        .on {
+            background-image: url("on.jpg");
+            width: 108px;
+            height: 144px;
+        }
+        .off{
+            background-image: url("off.jpg");
+            width: 108px;
+            height: 144px;
+        }
+         .modal{
+            position: fixed;
+            top:10%;
+            left: 15%;
+            right:22.3%;
+            bottom: 30%;
+            background-color: wheat;
+            z-index: 11;
+        }
+        .hide1{
+            display: none;
+        }
+        .body_body{
+            background-color: #B8B8B8;
+            /*background-color: #7CFC00;*/
+            width: 100%;
+            height: 125px;
+            position: absolute
+        }
+        .shadow{
+            position: fixed;
+            top:0;
+            right:0;
+            left:0;
+            bottom:0;
+            opacity:0.6;
+            background-color: #a3a3a1;
+            z-index: 10;
+        }
+        .modal{
+            position: fixed;
+            top:48px;
+            left:200px;
+            right:300px;
+            bottom:30%;
+            background-color: wheat;
+            z-index: 11;
+        }
+        .hide3{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="pg_header">
+    <div class="item left">运维平台</div>
+    <div class="content1 right">
+        <a style="padding: 4px;color: #3B3B3B;cursor: pointer"><i class="fa fa-bell-o" aria-hidden="true"></i></a>
+        <a style="padding: 4px;color: #3B3B3B;cursor: pointer"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+        <a style="padding: 4px;color: #3B3B3B;cursor: pointer"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+        <div style="display:inline" onclick="zhuce();"><a href="#">注册</a></div>
+        <a href="#">登录</a>
+    </div>
+</div>
+<div class="pg_body">
+    <div class="item2">
+        <div>
+            <div class="item3"><a style="padding: 15px;"><i class="fa fa-home" aria-hidden="true"></i></a>主页</div>
+            <div class="content3">内容一</div>
+            <div class="content3">内容一</div>
+            <div class="content3">内容一</div>
+        </div>
+        <div>
+            <div class="item3"><a style="padding: 15px;"><i class="fa fa-tasks" aria-hidden="true"></i></a>应用服务</div>
+            <div class="content3">内容二</div>
+            <div class="content3">内容二</div>
+            <div class="content3">内容二</div>
+        </div>
+        <div>
+            <div class="item3"><a style="padding: 15px;"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>自动发版</div>
+            <div class="content3">内容三</div>
+            <div class="content3">内容三</div>
+            <div class="content3">内容三</div>
+        </div>
+        <div>
+            <div class="item3"><a style="padding: 15px;"><i class="fa fa-wrench" aria-hidden="true"></i></a>运维工具</div>
+            <div class="content3">内容四</div>
+            <div class="content3">内容四</div>
+            <div class="content3">内容四</div>
+        </div>
+        <div>
+            <div class="item3"><a  style="padding: 15px;"><i class="fa fa-keyboard-o" aria-hidden="true"></i></a>故障管理</div>
+            <div class="content3">内容五</div>
+            <div class="content3">内容五</div>
+            <div class="content3">内容五</div>
+        </div>
+        <div>
+            <div class="item3"><a style="padding: 15px;"><i class="fa fa-magic" aria-hidden="true"></i></a>用户权限</div>
+            <div class="content3">内容六</div>
+            <div class="content3">内容六</div>
+            <div class="content3">内容六</div>
+        </div>
+    </div>
+    <!--<a style="text-decoration: none">-->
+    <!--<div style="background-color: #B8B8B8;left: 200px;right: 300px;height:1000px;position: absolute">-->
+    <div style="background-color: #B8B8B8;left: 200px;right: 300px;height:120px;position: absolute">
+        <input type="button" value="新增" onclick="addEle();"/>
+        <!--<table border="1px" width="850px" height="100px" >-->
+        <table border="1px" width="100%" onclick="color_line();">
+            <tr>
+                <td target="ip">192.168.1.1</td>
+                <td target="port">80</td>
+                <td>
+                    <input type="button" value="编辑" class="edit1"/>
+                </td>
+                <td>
+                    <input type="button" value="删除"/>
+                </td>
+            </tr>
+            <tr>
+                <td target="ip">192.168.1.2</td>
+                <td target="port">81</td>
+                <td>
+                    <input type="button" value="编辑" class="edit1"/>
+                </td>
+                <td>
+                    <input type="button" value="删除"/>
+                </td>
+            </tr>
+            <tr>
+                <td target="ip">192.168.1.3</td>
+                <td target="port">82</td>
+                <td>
+                    <input type="button" value="编辑" class="edit1"/>
+                </td>
+                <td>
+                    <input type="button" value="删除"/>
+                </td>
+            </tr>
+        </table>
+        <div class="modal hide1">
+            主机IP:<input type="text" value="" name="ip"/><p>
+            端口号:<input type="text" value="" name="port"/><p>
+            <input type="button" value="确认">
+            <input type="button" value="取消" onclick="cancelModel()">
+        </div>
+        <div class="shadow hide1"></div>
+        <div class="modal hide3">
+            <form action="http://www.baidu.com" id="info" method="get">
+                用户名:<input type="text" desc="用户名"/><br>
+                密码:<input type="password" desc="密码"/><br>
+                邮箱:<input type="text" desc="邮箱"/><br>
+                地址:<input type="text" desc="地址"/><br>
+                <input type="submit" value="提交">
+                <input type="submit" value="取消" onclick="cance3lModel()">
+            </form>
+        </div>
+        <div class="shadow hide3"></div>
+        <!--<br/>-->
+        <div class="body_body">
+            <input type="button" value="全选" onclick="selectAll();"/>
+            <input type="button" value="取消" onclick="cancelAll();"/>
+            <input type="button" value="反选" onclick="reverseAll();"/>
+            <table border="1px" width="100%">
+                <tr>
+                    <td>金控OA</td>
+                    <td>金控邮箱</td>
+                    <td>JIRA平台</td>
+                    <td><input type="checkbox"/></td>
+                </tr>
+                <tr>
+                    <td>天兔监控</td>
+                    <td>zabbix监控</td>
+                    <td>Ganglia监控</td>
+                    <td><input type="checkbox"/></td>
+                </tr>
+                <tr>
+                    <td>DB管理平台</td>
+                    <td>堡垒机</td>
+                    <td>Gitlab平台</td>
+                    <td><input type="checkbox"/></td>
+                </tr>
+                 <tr>
+                    <td>wiki平台</td>
+                    <td>Grafana监控</td>
+                    <td>Gitlab平台</td>
+                    <td><input type="checkbox"/></td>
+                </tr>
+            </table>
+        </div>
+        <div style="background-color: #B8B8B8;width: 100%;height:300px;top:235px;position: absolute">
+            <select name="furit" id="fruit" multiple style="width: 200px;height: 300px; float: left">
+                <option value="">苹果</option>
+                <option value="">香蕉</option>
+                <option value="">橘子</option>
+                <option value="">西瓜</option>
+                <option value="">甜瓜</option>
+            </select>
+            <input type="button" value="<---" onclick="toleft();" style="left: 30%;top:100px;position: absolute"/>
+            <input type="button" value="<===" onclick="totalleft();" style="left: 40%;;top:100px;position: absolute"/>
+            <input type="button" value="--->" onclick="toright();" style="right: 40%;;top:100px;position: absolute"/>
+            <input type="button" value="====>" onclick="totalright();" style="right: 30%;top:100px;position: absolute"/>
+            <select name="fish" id="fish" multiple style="width: 200px;height: 300px;float: right">
+                <option value="">大鱼</option>
+                <option value="">小鱼</option>
+                <option value="">黄鱼</option>
+                <option value="">鲤鱼</option>
+                <option value="">泥鳅</option>
+                <option value="">鳝鱼</option>
+            </select>
+        </div>
+    </div>
+    <!--</a>-->
+    <div class="content2">
+        <div style="height: 144px;background-color: white">
+            <div id="mydiv" class="on off" onclick="bright();"></div>
+            <!--<img src="off.jpg">-->
+        </div>
+        <img src="123.png">
+        <div>
+            <input type="text" value="请输入关键字" style="margin-left:0px;width: 300px">
+            <div style="width: 300px;margin: 0 auto">
+                <div class="item5">
+                    <div class="menu5 active" a="1">菜单一</div>
+                    <div class="menu5" a="2">菜单二</div>
+                    <div class="menu5" a="3">菜单三</div>
+                    <div class="menu5" a="4">菜单四</div>
+                </div>
+                <div class="content5">
+                    <div class="info5" b="1">内容一</div>
+                    <div class="info5 hide" b="2">内容二</div>
+                    <div class="info5 hide" b="3">内容三</div>
+                    <div class="info5 hide" b="4">内容四</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="jquery.js"></script>
+<script>
+    $(".item3").click(function(){
+        $(this).nextAll(".content3").css("display","block");
+        $(this).parent().siblings().children(".content3").css("display","none");
+    });
+      $(".menu5").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        var v = $(this).attr("a");
+        $(this).parent().siblings().children("[b="+ v +"]").removeClass("hide").siblings().addClass("hide");
+    });
+    function bright(){
+        if($("#mydiv").hasClass("off")){
+            $("#mydiv").removeClass("off");
+        }else $("#mydiv").addClass("off");
+    }
+//    搜索框
+     $("input[type='text']").focus(function(){
+        var v = $(this).val();
+        if (v=="请输入关键字"){
+            $(this).val("");
+        };
+    });
+    $("input[type='text']").blur(function(){
+        var v = $(this).val();
+        if (v == ""){
+            $(this).val("请输入关键字");
+        }
+    });
+
+//    莫泰对话框
+     function addEle(){
+        $(".hide1").css("display","block");
+    }
+    function cancelModel(){
+        $(".hide1").css("display","none");
+    }
+    function cance3lModel(){
+        $(".hide3").css("display","none");
+    }
+//模态对话框 编辑框 自动补充信息
+    $(".edit1").click(function(){
+        $(".hide1").css("display","block");
+        var tds = $(this).parent().siblings('td');
+//        console.log(tds);
+        tds.each(function(){
+            var k = $(this).attr('target');
+            var v = $(this).text();
+            console.log(k + '---' + v);
+            var v1 = "input[name = '";
+            var v2 = "']";
+            var tmp = v1 + k + v2;
+//            console.log(tmp);
+            $(tmp).val(v);
+        });
+    });
+
+    //权限反选和取消
+    function selectAll(){
+            $("input[type='checkbox']").prop("checked",true)
+        }
+    function cancelAll(){
+        $("input[type='checkbox']").prop("checked",false)
+    }
+    function reverseAll(){
+       $("input[type='checkbox']").each(function(){
+         $(this).prop("checked") ? $(this).prop("checked",false) : $(this).prop("checked",true);
+        })
+    }
+
+//    左右互选
+    function toleft(){
+        $("#fish option:selected").appendTo("#fruit");
+    }
+    function totalleft(){
+        $("#fish option").appendTo("#fruit");
+    }
+    function toright(){
+        $("#fruit option:selected").appendTo("#fish");
+    }
+    function totalright(){
+        $("#fruit option").appendTo("#fish");
+    }
+
+    function zhuce(){
+         $(".hide3").css("display","block");
+    }
+   $(":submit").click(function(){
+        flag1 = true
+        $(".err").remove();
+        $("input[type='text'],input[type='password']").each(function(){
+            var v = $(this).val();
+            if (v.length <= 0){
+                flag1 = false
+                var desc = $(this).attr("desc");
+                $(this).after($("<span class='err'>"+ desc +"必填</span>"));
+//                return flag1
+            }
+        })
+        return flag1
+    })
+
+    function color_line(){
+        $("tr").mouseover(function(){
+            $(this).css("background-color","#00EEEE");
+        });
+        $("tr").mouseout(function(){
+            $(this).css("background-color","");
+        })
+    }
+</script>
+</html>

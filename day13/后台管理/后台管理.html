@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<!--http://keenthemes.com/preview/index.php?theme=conquer-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.css" >
+    <link rel="stylesheet" href="font-awesome-4.6.3/less/icons.less">
+    <style>
+        body{
+            margin: 0;
+        }
+        .left{
+            float: left;
+        }
+        .right{
+            float: right;
+        }
+        .hide{
+            display: none;
+        }
+        .pg-header{
+            height: 48px;
+            background-color: cadetblue;
+            line-height: 48px;
+            min-width: 1000px;
+        }
+        .pg-header .logo{
+            width: 200px;
+            background-color: burlywood;
+            text-align: center;
+            color: white;
+            font-size: 26px;
+            font-family: 微软雅黑,华文细黑,黑体,Arial;
+        }
+        .pg-header .search_info a{
+            /*display: inline-block;*/
+            left: 200px;
+            width: 10px;
+            height: 40px;
+        }
+        .pg-header .user_info a.item{
+            display: inline-block;
+            padding: 0 10px;
+        }
+        .pg-header .user_info a:hover{
+            background-color: burlywood;
+        }
+        .pg-header .avatar{
+            height: 40px;
+            width: 40px;
+            /*overflow: hidden;*/
+            /*margin-top: 4px;*/
+            padding: 4px 10px;
+            margin-right: 20px;
+
+        }
+        .pg-header .avatar .user-menu{
+            position: absolute;
+            width: 120px;
+            border: 1px solid #dddddd;
+            top: 48px;
+            right: -3px;
+            display: none;
+            background-color: #BFEFFF;
+            z-index: 10;
+        }
+        .pg-header .avatar .user-menu a{
+            display: block;
+        }
+        .pg-header .avatar:hover .user-menu{
+            display: block;
+        }
+        .item .content{
+            width: 200px;
+            background-color: cadetblue;
+            bottom: 0;
+        }
+        .item .title{
+            /*position: absolute;*/
+            height: 20px;
+            background-color: cadetblue;
+            line-height: 20px;;
+            width: 170px;
+            font-size: 14px;
+            padding: 15px;
+            /*bottom: 0;*/
+            /*top: 48px;*/
+            /*left: 0;*/
+        }
+        .item .content a{
+            display: block;
+            font-size: 16px;
+            padding: 8px;
+        }
+        .pg-body{
+            min-width: 800px;
+        }
+        .pg-body .content{
+            position: absolute;
+            top: 48px;
+            left: 200px;
+            bottom: 0;
+            right: 0;
+            background-color: lightsalmon;
+            overflow: scroll;
+            z-index: 5;
+        }
+        .item .content .youla {
+            position: absolute;
+            left: 200px;
+            top: 10px;
+            z-index: 10;
+            width: 50px;
+            background-color: #015e98;
+        }
+        .item .content .hide{
+            display: none;
+        }
+        /*.item .content .user-menu a {*/
+            /*display: block;*/
+        /*}*/
+        .item .content:hover .user-menu{
+            display: block;
+        }
+        .pg-body .content .body_head_2{
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 48px;
+            right: 0;
+            background-color: white;
+        }
+        .pg-body .content .body_head_2 a.item{
+            /*position: absolute;*/
+            /*padding: 12px;*/
+            /*left: 40px;*/
+            /*background-color: #015e98;*/
+            /*height: 24px;*/
+            color:#B8B8B8;
+            position: absolute;
+            padding:12px;
+            /*display: inline-block;*/
+            /*right:20px;*/
+            height: 24px;
+            text-decoration: none
+        }
+        .pg-body .menu_body {
+            position: absolute;
+            top: 96px;
+            left: 200px;
+            right: 0;
+            bottom: 0;
+            /*background-color: #CFCFCF;*/
+            z-index: 10;
+        }
+        .pg-body .content .body_head_2 .user-menu2{
+            position: absolute;
+            width: 120px;
+            border: 1px solid #dddddd;
+            top: 48px;
+            right: 30px;
+            background-color: #ADD8E6;
+            display: none;
+            z-index: 110;
+        }
+        .pg-body .content .body_head_2 .avatar2 .user-menu2 a {
+            display: block;
+        }
+        .pg-body .content .body_head_2 .avatar2:hover .user-menu2 {
+            display: block;
+        }
+        .pg-body .menu_body td {
+            text-align: center;
+            /*border-radius: 95%;*/
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pg-header">
+        <div class="logo left">运维平台</div>
+        <div class="search_info left">
+            <!--<a><input id="keyword" placeholder="输入关键字搜索"  type="search"></a>-->
+            <a><form action='https://www.sogou.com/web'>
+                <input style="border-radius: 30px" type='text' name='query' id="keyword" placeholder="search"  type="search" />
+                <!--<div>提交</div>-->
+            </form></a>
+        </div>
+        <div class="user_info right">
+            <div class="avatar right">
+                <a ><img style="width: 100%;height: 100%;border-radius: 50%"  src="pic_header.png"></a>
+                <div class="user-menu">
+                    <a href="#">个人信息</a>
+                    <a href="#">注销</a>
+                </div>
+            </div>
+            <!--<a class="item"><i class="fa fa-envelope-open-o" aria-hidden="true"></i></a>-->
+            <a class="item"><i class="fa fa-bell-o" aria-hidden="true"></i></a>
+            <a class="item"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            <a class="item"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+            <!--<a class="item"><i class="fa fa-star" aria-hidden="true"></i></a>-->
+            <a class="item">登录</a>
+            <a class="item">注册</a>
+        </div>
+    </div>
+    <div style="width: 200px;bottom: 0;border: 1px solid ;background-color: #6AA1EA;position: absolute;top: 48px">
+    <div class="item">
+        <div class="title" onclick="changeMenu(this);"><a style="padding: 5px;"><i class="fa fa-home" aria-hidden="true"></i></a>主页</div>
+        <div class="content">
+            <div class="user-menu">
+                <a class="youla hide" href="#">内容一</a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="title" onclick="changeMenu(this);"><a style="padding: 5px;"><i class="fa fa-tasks" aria-hidden="true"></i></a>应用服务</div>
+        <div class="content hide">
+            <a href="#">内容二</a>
+            <a href="#">内容二</a>
+            <a href="#">内容二</a>
+            <a href="#">内容二</a>
+            <a href="#">内容二</a>
+            <a href="#">内容二</a>
+            <a href="#">内容二</a>
+            <a href="#">内容二</a>
+            <a href="#">内容二</a>
+            <a href="#">内容二</a>
+            <a href="#">内容二</a>
+        </div>
+    </div>
+    <div class="item">
+        <div class="title" onclick="changeMenu(this);"><a style="padding: 5px;"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>自动发版</div>
+        <div class="content hide">
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+        </div>
+    </div>
+         <div class="item">
+        <div class="title" onclick="changeMenu(this);"><a style="padding: 3px;"><i class="fa fa-wrench" aria-hidden="true"></i></a>运维工具</div>
+        <div class="content hide">
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+        </div>
+    </div>
+         <div class="item">
+        <div class="title" onclick="changeMenu(this);"><a  style="padding: 3px;"><i class="fa fa-keyboard-o" aria-hidden="true"></i></a>故障管理</div>
+        <div class="content hide">
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+        </div>
+    </div>
+         <div class="item">
+        <div class="title" onclick="changeMenu(this);"><a style="padding: 3px;"><i class="fa fa-magic" aria-hidden="true"></i></a>用户权限</div>
+        <div class="content hide">
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+            <a href="#">内容三</a>
+        </div>
+    </div>
+</div>
+     <div class="pg-body">
+        <!--<div class="menus">asasa</div>-->
+        <div class="content">
+            <div class="body_head_2">
+                <!--<div id="i1_time">-->
+                    <div>
+                        <a href="#"><i class="fa fa-backward" aria-hidden="true" style="color:#B8B8B8;position: absolute;padding: 12px;left: 0px;height: 24px;"></i></a>
+                        <a href="#" style="color: black;position: absolute;padding: 12px;left: 40px;background-color: #878787;height: 24px;">首页</a>
+                        <a href="#" class="item" style="right: 24px"><i class="fa fa-forward" aria-hidden="true"></i></a>
+                        <div id="i1_1" style="background-color: #CD8500;right: 128px;position: absolute;height: 24px;padding: 12px"></div>
+                        <div id="xunhuan" style="background-color: #7CFC00;right: 300px;position: absolute;height: 24px;left:95px;padding: 12px">热烈欢迎登录运维管理平台 老男孩Python2.0自动化课程</div>
+                        <div>
+
+                            <div class="avatar2">
+                                <a href="#" class="item" style="right: 48px;background-color: #FFFAFA;color: black;">关闭操作</a>
+                                <div class="user-menu2">
+                                    <a href="#">关闭所有选项</a>
+                                    <a href="#">关闭其他选项</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!--</div>-->
+                <!--<input style="right: 0;position: absolute">-->
+            </div>
+        </div>
+
+         <div class="menu_body">
+             <a style="height: 48px;left: 0">
+                 <!--<div id="i1" style="background-color: #FFDEAD;left: 200px;top: 300px;z-index: 130"></div>-->
+                 <div style="padding: 13px">主页</div>
+                 <HR width="100%" SIZE=1>
+                 <div style="position: absolute;top: 58px;;left:20px;background-color: #FFFFFF;border: 1px solid #dddddd;width: 350px;height: 450px">
+                        <!--<a style="background-color: #abb6d2;width: 100%">日常办公</a>-->
+                     <!--<div style="position:absolute;width:350px;height:100px;top:20px;left:10px">-->
+                     <div style="position: absolute;top: 5px;left: 30px;right: 30px">
+                         <table border="1" align="center" cellspacing="0" width="300" height="40">
+                             <tr>
+                                 <th>日常办公</th>
+                             </tr>
+                         </table>
+                     </div>
+                     <div style="position:absolute;top: 50px;left: 30px;right: 30px">
+                     <table border="1" align="center" width="300" height="350" cellspacing="0">
+                         <thead>
+                         <tr>
+                             <th>选择</th>
+                             <th>项目组</th>
+                         </tr>
+                         </thead>
+                         <tbody id="tb">
+                         <tr>
+                             <td><input type="checkbox"></td>
+                             <td style="background-color: brown;">金控OA</td>
+                         </tr>
+                         <tr>
+                             <td><input type="checkbox"></td>
+                             <td style="background-color: #2559a4">金控邮箱</td>
+                         </tr>
+                         <tr>
+                             <td><input type="checkbox"></td>
+                             <td style="background-color: deepskyblue">JIRA平台</td>
+                         </tr>
+                         <tr>
+                             <td><input type="checkbox"></td>
+                             <td style="background-color: dodgerblue">WIKI平台</td>
+                         </tr>
+                         <tr>
+                             <td><input type="checkbox"></td>
+                             <td style="background-color: #CD8500">Gitlab平台</td>
+                         </tr>
+                         </tbody>
+                     </table>
+                      <input type="button" value="全选" onclick="checkAll();">
+                     <input type="button" value="取消" onclick="removeAll();">
+                     <input type="button" value="反选" onclick="reverSerAll()">
+                      <a href="#"><input type="button" value="立即跳转"></a>
+                     <!--<HR width="100%" SIZE=1>-->
+                 </div>
+                     </div>
+                 <div style="position: absolute;top: 58px;;left:400px;background-color: #FFFFFF;border: 1px solid #dddddd;width: 350px;height: 450px">
+                     <div style="position: absolute;top: 5px;left: 30px;right: 30px">
+                         <table border="1" align="center" cellspacing="0" width="300" height="40">
+                             <tr>
+                                 <th>运维监控</th>
+                             </tr>
+                         </table>
+                     </div>
+                     <!--<div style="background-color: #015e98;position: absolute;top: 60px">-->
+                     <div style="position: absolute;top: 50px;left: 30px;right: 30px">
+                         <table border="1" align="center" width="300" height="300" cellspacing="0">
+                             <tr>
+                                 <td><input type="radio" name="a">天兔 监控平台</td>
+                             </tr>
+                             <tr>
+                                 <td><input type="radio" name="a">Zabbix监控平台</td>
+                             </tr>
+                             <tr>
+                                 <td><input type="radio" name="a">Grafana监控平台</td>
+                             </tr>
+                             <tr>
+                                 <td><input type="radio" name="a">Ganglia监控平台</td>
+                             </tr>
+                         </table>
+                         <input type="button" value="立即跳转">
+                     </div>
+                 </div>
+                 <div style="position: absolute;top: 58px;;left:780px;background-color: #FFFFFF;border: 1px solid #dddddd;width: 350px;height: 450px">
+                  <div style="position: absolute;top: 5px;left: 30px;right: 30px">
+                         <table border="1" align="center" cellspacing="0" width="300" height="40">
+                             <tr>
+                                 <th>运维管理</th>
+                             </tr>
+                         </table>
+                     </div>
+                     <div style="position: absolute;top: 50px;left: 30px;right: 30px">
+                         <table border="1" align="center" width="300" height="100" cellspacing="0">
+                                 <tr>
+                                     <td>
+                                         <a href="#" style="text-decoration:none;background-color: #1C86EE;padding: 10px;border-radius: 50px;position: absolute;top:30px;left: 30px;right: 30px">DB管理平台</a>
+                                     </td>
+                                 </tr>
+                         </table>
+                     </div>
+                 </div>
+                 <div></div>
+             </a>
+         </div>
+    </div>
+<script type="text/javascript" language="javascript">
+    function changeMenu(currentTag){
+//        console.log(currentTag)
+        var contentTagObj = currentTag.nextElementSibling;
+        contentTagObj.classList.remove('hide');
+
+        var itemObjList = contentTagObj.parentElement.parentElement.children;
+        for(var i=0;i<itemObjList.length;i++){
+            var loopItemObj = itemObjList[i];
+            if(loopItemObj!=contentTagObj.parentElement){
+                loopItemObj.lastElementChild.classList.add('hide');
+            }
+        }
+    }
+    function currentDate() {
+        var da = new Date();
+        var year = da.getFullYear();
+        var monmth = da.getMonth() +1;
+        if(monmth <10){
+           var monmth = "0"+monmth
+        }
+        var day = da.getDate();
+        if(day <10){
+            var day = "0"+day
+        }
+        var hours = da.getHours();
+        if(da.getHours() < 10){
+            var hours = "0"+da.getHours();
+        }
+        var minutes = da.getMinutes();
+        if(minutes <10){
+            var minutes = "0"+minutes
+        }
+        var seconds = da.getSeconds();
+        if(seconds < 10){
+            var seconds = "0"+seconds
+        }
+        var txt = year + "-" + monmth + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+        document.getElementById("i1_1").innerHTML = txt
+    }
+    setInterval(currentDate,1000)
+     function checkAll(){
+        var trlist = document.getElementById("tb").children;
+        for(var i=0;i<trlist.length;i++){
+            var tr = trlist[i];
+            tr.firstElementChild.firstElementChild.checked = true;
+        }
+    }
+    function removeAll(){
+         var trlist = document.getElementById("tb").children;
+        for(var i=0;i<trlist.length;i++){
+            var tr = trlist[i];
+            tr.firstElementChild.firstElementChild.checked = false;
+        }
+    }
+    function reverSerAll(){
+         var trlist = document.getElementById("tb").children;
+        for(var i=0;i<trlist.length;i++){
+            var tr = trlist[i];
+            if (tr.firstElementChild.firstElementChild.checked){
+                tr.firstElementChild.firstElementChild.checked = false;
+            }else {
+                tr.firstElementChild.firstElementChild.checked = true;
+            }
+        }
+    }
+    setInterval(function(){
+        var txt = document.getElementById("xunhuan").innerText;
+        var a = txt.charAt(0);
+        var b = txt.substring(1,txt.length);
+        var new_txt = b + a;
+        document.getElementById("xunhuan").innerText = new_txt;
+    },500)
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .pg-header{
+            height: 48px;
+            background-color: cadetblue;
+        }
+        .menu{
+            position: absolute;
+            left: 0;
+            top: 48px;
+            bottom: 0;
+            width: 200px;
+            background-color: #dddddd;
+        }
+         .menu_right{
+            position: absolute;
+            right: 0;
+            top: 48px;
+            bottom: 0;
+            width: 200px;
+            background-color: #dddddd;
+        }
+        .menu_center{
+            position: fixed;
+            right: 200px;
+            top: 48px;
+            bottom: 0;
+            width: 256px;
+            background-color: white;
+{#            overflow: auto;#}
+        }
+        .content{
+            position: absolute;
+            left: 210px;
+            right: 0;
+            top: 48px;
+            bottom: 0;
+            overflow: auto;
+        }
+        .menu-item{
+            display: block;
+            padding: 15px 0;
+            border: 1px solid #dddddd;
+        }
+        .menu-item.active{
+            background-color: blueviolet;
+        }
+        .comment > .content3{
+            margin-left: 50px;
+            color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+<div class="pg-header">
+    <div class="w">
+        <a class="logo" href="/"></a>
+        <div class="act-menu">
+            <a id="menu_news" href="/backend/news/" class="tb">全部</a>
+            <a id="menu_user" href="/backend/user/" class="tb">42区</a>
+            <a id="menu_host" href="/backend/host/" class="tb">段子</a>
+            <a id="menu_home" href="/backend/home/" class="tb">图片</a>
+            <a id="menu_order" href="/backend/order/" class="tb">挨踢1024</a>
+            <a id="menu_answer" href="/backend/answer/" class="tb">你问我答</a>
+        </div>
+        <div class="key-sera">
+
+            <form action="/search/show" method="post" name="searchFrm2" id="searchFrm2">
+                <input type="text" class="search-txt-s" name="words" id="txtSearch2" autocomplete="off">
+
+                <a href="javascript:;" class="i" name="searchBtn_2" id="searchBtn_3"><span class="ico"></span></a>
+                <input type="hidden" value="1" id="page" name="page">
+            </form>
+
+        </div>
+{#        <script type="application/javascript" src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>#}
+        <div id="action_nav" is-login="false" class="action-nav">
+            <a href="javascript:void(0);" class="login-btn-a" id="reg_link_a">注册</a>
+            <a href="javascript:void(0);" class="login-btn-a" id="login_link_a">登录</a>
+        </div>
+</div>
+
+<div class="pg-body">
+    <div class="menu">
+{#        <a id="menu_order" href="/backend/order/" class="menu-item">订单管理</a>#}
+{#        <a id="menu_user" href="/backend/user/" class="menu-item">用户管理</a>#}
+{#        <a id="menu_host" href="/backend/host/" class="menu-item">主机管理</a>#}
+{#        <a id="menu_home" href="/backend/home/" class="menu-item">home管理</a>#}
+{#        <a id="menu_news" href="/backend/news/" class="menu-item">新闻管理</a>#}
+    </div>
+    <div class="menu_right"></div>
+    <div class="menu_center">
+        {% block ccc %}
+
+        {% endblock %}
+    </div>
+    <div class="content">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

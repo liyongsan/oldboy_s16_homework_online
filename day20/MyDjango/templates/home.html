@@ -1,0 +1,16 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+    <h1>图片</h1>
+    <script src="/static/jquery.js"></script>
+    <link rel="stylesheet" href="/static/css/commons.css">
+    <link rel="stylesheet" href="/static/plugins/tab-menu-box/tab.css">
+    <div>
+
+    </div>
+    <script>
+        $(function(){
+            $("#menu_home").addClass("active").sibling().removeClass("active");
+        })
+    </script>
+{% endblock %}

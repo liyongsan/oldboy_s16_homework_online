@@ -1,0 +1,27 @@
+{% extends '_layout.html' %}
+
+{% block content %}
+
+    <h1>段子</h1>
+    <input />
+    <textarea name="content" id="content"></textarea>
+
+    <script src="/static/jquery.js"></script>
+       <link rel="stylesheet" href="/static/css/commons.css">
+    <link rel="stylesheet" href="/static/plugins/tab-menu-box/tab.css">
+    <script src="/static/kindeditor-4.1.10/kindeditor-all.js"></script>
+    <script>
+        $(function () {
+            $('#menu_host').addClass('active').siblings().removeClass('active');
+            initKindEditor();
+        });
+        function initKindEditor() {
+            var kind = KindEditor.create('#content', {
+                width: '500px',       // 文本框宽度(可以百分比或像素)
+                height: '300px',     // 文本框高度(只能像素)
+                minWidth: 200,       // 最小宽度（数字）
+                minHeight: 400      // 最小高度（数字）
+            });
+        }
+    </script>
+{% endblock %}

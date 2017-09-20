@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主机管理</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+</head>
+<body>
+<div style="width: 800px;margin: 0 auto;">
+        <h1>主机列表</h1>
+        <div>
+            <a href="/add_aj" class="btn btn-default">添加</a>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>主机名</th>
+                    <th>系统版本</th>
+                    <th>部门</th>
+                    <th>所属用户</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in host_list %}
+                    <tr>
+                        <td>{{ row.hostname }}</td>
+                        <td>{{ row.system_version }}</td>
+                        <td>{{ row.dp.title }}</td>
+                        <td>{{ row.UI.username }}</td>
+                       <td><a href="/edit_users-{{ row.id }}">编辑</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <div>
+        <nav aria-label="...">
+          <ul class="pagination">
+              {{ page_info.page_str|safe }}
+          </ul>
+        </nav>
+    </div>
+    </div>
+</body>
+</html>

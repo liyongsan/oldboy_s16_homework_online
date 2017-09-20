@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap-theme.css">
+    <script src="/static/jquery.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+</head>
+<body>
+<span class="input-group input-group-addon" id="basic-addon1">欢迎登陆抽屉页面</span><br/>
+<form method="post" action="/login/">
+    {% csrf_token %}
+    <div class="container">
+    <div class="input-group" style="width: 400px">
+        <span class="input-group-addon"  id="basic-addon1">账号</span>
+        <input type="text"  name="username" id="user" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group" style="width: 400px">
+        <span class="input-group-addon" id="basic-addon1">密码</span>
+        <input type="password" name="password" id="pwd" class="form-control" placeholder="password" aria-describedby="basic-addon1">
+    </div>
+        <div class="input-group" style="width: 400px">
+            <span class="input-group-addon" id="basic-addon1">验证码</span>
+            <input type="text" name="code" id="pwd" class="form-control" style="height: 44px;" placeholder="code" aria-describedby="basic-addon1">
+            <span  class="input-group-addon">
+                <img src="/check_code/" onclick="checkImg(this)">
+                <div style="font-size: 3px">{{ back_code }}</div>
+            </span>
+        </div>
+
+    <span class="input-group-addon" style="width: 50px" id="basic-addon1"><input type="submit" value="提交"/></span>
+</div>
+</form>
+<script>
+    function checkImg(ths){
+        ths.src = ths.src + "?";
+    }
+</script>
+</body>
+</html>

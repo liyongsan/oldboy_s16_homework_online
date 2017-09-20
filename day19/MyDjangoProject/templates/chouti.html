@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽屉主页</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <script type="application/javascript" src="/static/bootstrap/js/bootstrap.js"></script>
+    <script type="application/javascript" src="/static/jquery-1.12.4.js"></script>
+    <style>
+        .pg-header{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 48px;
+            background-color: #2a6496;
+        }
+        .pg_h1{
+            position: fixed;
+            left: 220px;
+            right: 220px;
+            top: 0;
+            height: 48px;
+            background-color:  #2a6496;
+            line-height: 48px;
+            padding: 4px;
+            font-size: 20px;
+            color: #ce8483;
+        }
+        .pg_h2{
+            position: fixed;
+            right: 40px;
+            top: 0;
+            height: 48px;
+            background-color:  #2a6496;
+            line-height: 48px;
+{#            padding: 4px;#}
+            font-size: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="pg-header">
+    <div class="pg_h1">
+    <a href="/all/hot/recent/1" class="tb active" style="color: white">全部</a>
+            <a href="/all/hot/recent/1" class="tb" style="color: white">42区</a>
+            <a href="/all/hot/recent/1" class="tb" style="color: white">段子</a>
+            <a href="/all/hot/recent/1" class="tb" style="color: white">图片</a>
+            <a href="/all/hot/recent/1" class="tb" style="color: white">挨踢1024</a>
+            <a href="/all/hot/recent/1" class="tb" style="color: white">你问我答</a>
+    </div>
+    <div id="action_nav" is-login="false" class="action-nav pg_h2">
+            <a id="btn" style="color: white">注册</a>
+            <a id="btn" style="color: white">登录</a>
+    </div>
+</div>
+<div style="width: 900px;margin: 48px auto;">
+    <h3>抽屉主页</h3>
+{#    <div>#}
+{#            <a href="/add_users" class="btn btn-default">添加</a>#}
+{#        </div>#}
+    {#    <h1>"伪"Ajax操作</h1>#}
+    <form id="ff1" action="/ajax-upload/" method="POST" enctype="multipart/form-data" target="ifr">
+        {% csrf_token %}
+        <input  type="file" name="fffff" onchange="changeImg();"/>
+    </form>
+    <iframe id="ifr" name="ifr" onload="successBack();"  style="display: none"></iframe>
+    <div id="prevImg"></div>
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>主题</th>
+            <th>图片</th>
+            <th>内容</th>
+            <th>类型</th>
+            <th>属主</th>
+            <th>创建时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in all_list %}
+            <tr>
+                <td>{{ row.title }}</td>
+                <td>{{ row.img }}</td>
+                <td>{{ row.summary }}</td>
+                <td>{{ row.nt_id.content }}</td>
+                <td>{{ row.u.username }}</td>
+                <td>{{ row.ctime }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <nav aria-label="...">
+          <ul class="pagination">
+              {{ page_info.page_str|safe }}
+          </ul>
+        </nav>
+    </div>
+    </div>
+<script src="/static/jquery-1.12.4.js"></script>
+<script>
+function successBack() {
+            var v = $('#ifr').contents().find('body').html();
+            var obj = JSON.parse(v);
+            var tag = document.createElement('img');
+            tag.src = "/" + obj.data;
+            $('#prevImg').append(tag);
+        }
+        function changeImg() {
+            document.getElementById('ff1').submit();
+        }
+</script>
+</body>
+</html>
